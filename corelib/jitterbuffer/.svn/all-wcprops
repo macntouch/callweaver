@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/4800/callweaver/branches/rel/1.2/corelib/jitterbuffer
+END
+jitterbuf_stevek.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/4723/callweaver/branches/rel/1.2/corelib/jitterbuffer/jitterbuf_stevek.c
+END
+jitterbuf_scx.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/2978/callweaver/branches/rel/1.2/corelib/jitterbuffer/jitterbuf_scx.h
+END
+jitterbuf_stevek.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/4723/callweaver/branches/rel/1.2/corelib/jitterbuffer/jitterbuf_stevek.h
+END
+jitterbuf_speakup.c
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/4723/callweaver/branches/rel/1.2/corelib/jitterbuffer/jitterbuf_speakup.c
+END
+generic_jb.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/4800/callweaver/branches/rel/1.2/corelib/jitterbuffer/generic_jb.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/4723/callweaver/branches/rel/1.2/corelib/jitterbuffer/Makefile.am
+END
+jitterbuf_scx.c
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/2978/callweaver/branches/rel/1.2/corelib/jitterbuffer/jitterbuf_scx.c
+END
+jitterbuf_speakup.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/4723/callweaver/branches/rel/1.2/corelib/jitterbuffer/jitterbuf_speakup.h
+END

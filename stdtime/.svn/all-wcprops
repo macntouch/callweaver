@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/4723/callweaver/branches/rel/1.2/stdtime
+END
+private.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/2978/callweaver/branches/rel/1.2/stdtime/private.h
+END
+test.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/4723/callweaver/branches/rel/1.2/stdtime/test.c
+END
+tzfile.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/2978/callweaver/branches/rel/1.2/stdtime/tzfile.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/3650/callweaver/branches/rel/1.2/stdtime/Makefile.am
+END
+localtime.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/4723/callweaver/branches/rel/1.2/stdtime/localtime.c
+END

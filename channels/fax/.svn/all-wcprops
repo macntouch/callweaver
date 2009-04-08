@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/5215/callweaver/branches/rel/1.2/channels/fax
+END
+faxmodem.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/4763/callweaver/branches/rel/1.2/channels/fax/faxmodem.c
+END
+faxmodem.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/5215/callweaver/branches/rel/1.2/channels/fax/faxmodem.h
+END
+chan_fax.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/4766/callweaver/branches/rel/1.2/channels/fax/chan_fax.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/4723/callweaver/branches/rel/1.2/channels/fax/Makefile.am
+END

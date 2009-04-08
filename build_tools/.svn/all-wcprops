@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/4723/callweaver/branches/rel/1.2/build_tools
+END
+mkdep
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/2978/callweaver/branches/rel/1.2/build_tools/mkdep
+END
+make_build_h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/2978/callweaver/branches/rel/1.2/build_tools/make_build_h
+END
+make_version_h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/2978/callweaver/branches/rel/1.2/build_tools/make_version_h
+END
+mk_osx_user_group
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/4723/callweaver/branches/rel/1.2/build_tools/mk_osx_user_group
+END
+make_defaults_h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/4723/callweaver/branches/rel/1.2/build_tools/make_defaults_h
+END

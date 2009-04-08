@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/5347/callweaver/branches/rel/1.2/include
+END
+js.msg
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/2978/callweaver/branches/rel/1.2/include/js.msg
+END
+jsopcode.tbl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/2978/callweaver/branches/rel/1.2/include/jsopcode.tbl
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/3652/callweaver/branches/rel/1.2/include/Makefile.am
+END
+callweaver.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/5153/callweaver/branches/rel/1.2/include/callweaver.h
+END

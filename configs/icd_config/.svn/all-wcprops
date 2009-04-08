@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/4976/callweaver/branches/rel/1.2/configs/icd_config
+END
+extensions.conf.sample
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/2978/callweaver/branches/rel/1.2/configs/icd_config/extensions.conf.sample
+END
+icd.conf
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/2978/callweaver/branches/rel/1.2/configs/icd_config/icd.conf
+END
+icd_agents.conf
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/2978/callweaver/branches/rel/1.2/configs/icd_config/icd_agents.conf
+END
+icd_conference.conf
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/4976/callweaver/branches/rel/1.2/configs/icd_config/icd_conference.conf
+END
+icd_queues.conf
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/4976/callweaver/branches/rel/1.2/configs/icd_config/icd_queues.conf
+END

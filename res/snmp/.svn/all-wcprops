@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/4723/callweaver/branches/rel/1.2/res/snmp
+END
+agent.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/4723/callweaver/branches/rel/1.2/res/snmp/agent.c
+END
+agent.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/3288/callweaver/branches/rel/1.2/res/snmp/agent.h
+END

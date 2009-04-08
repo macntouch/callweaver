@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/4777/callweaver/branches/rel/1.2/channels/misdn
+END
+fac.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/fac.h
+END
+isdn_msg_parser.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/3636/callweaver/branches/rel/1.2/channels/misdn/isdn_msg_parser.c
+END
+misdn_config.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/4777/callweaver/branches/rel/1.2/channels/misdn/misdn_config.c
+END
+asn1.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/asn1.c
+END
+chan_misdn.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/4739/callweaver/branches/rel/1.2/channels/misdn/chan_misdn.c
+END
+isdn_lib.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/3288/callweaver/branches/rel/1.2/channels/misdn/isdn_lib.c
+END
+VERSION
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/VERSION
+END
+asn1.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/asn1.h
+END
+isdn_lib_intern.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/3288/callweaver/branches/rel/1.2/channels/misdn/isdn_lib_intern.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/4723/callweaver/branches/rel/1.2/channels/misdn/Makefile.am
+END
+isdn_lib.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/isdn_lib.h
+END
+fac.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/fac.c
+END
+chan_misdn_config.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/2978/callweaver/branches/rel/1.2/channels/misdn/chan_misdn_config.h
+END
+ie.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/3288/callweaver/branches/rel/1.2/channels/misdn/ie.c
+END

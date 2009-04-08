@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/4723/callweaver/branches/rel/1.2/contrib/patch-for-1.2.1
+END
+app_pickup2.patch
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/4723/callweaver/branches/rel/1.2/contrib/patch-for-1.2.1/app_pickup2.patch
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/4135/callweaver/branches/rel/1.2/contrib/patch-for-1.2.1/README
+END
+cdr_mysql_extra.patch
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/4723/callweaver/branches/rel/1.2/contrib/patch-for-1.2.1/cdr_mysql_extra.patch
+END

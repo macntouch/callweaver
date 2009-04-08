@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/4120/callweaver/branches/rel/1.2/doc/osnotes
+END
+README.Darwin
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/3288/callweaver/branches/rel/1.2/doc/osnotes/README.Darwin
+END
+darwin-install.sh
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/4120/callweaver/branches/rel/1.2/doc/osnotes/darwin-install.sh
+END
+README.FreeBSD
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/3288/callweaver/branches/rel/1.2/doc/osnotes/README.FreeBSD
+END
+README.solaris
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/2978/callweaver/branches/rel/1.2/doc/osnotes/README.solaris
+END
+README.NetBSD
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/2978/callweaver/branches/rel/1.2/doc/osnotes/README.NetBSD
+END

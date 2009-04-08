@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/5349/callweaver/branches/rel/1.2/apps/nconference
+END
+dtmf.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/dtmf.h
+END
+frame.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/frame.h
+END
+jitterbuffer.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/3615/callweaver/branches/rel/1.2/apps/nconference/jitterbuffer.h
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/2978/callweaver/branches/rel/1.2/apps/nconference/LICENSE
+END
+member.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5349/callweaver/branches/rel/1.2/apps/nconference/member.c
+END
+cli.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/5160/callweaver/branches/rel/1.2/apps/nconference/cli.c
+END
+conference.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/5349/callweaver/branches/rel/1.2/apps/nconference/conference.c
+END
+vad.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/vad.c
+END
+sounds.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5197/callweaver/branches/rel/1.2/apps/nconference/sounds.c
+END
+member.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/5349/callweaver/branches/rel/1.2/apps/nconference/member.h
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/2978/callweaver/branches/rel/1.2/apps/nconference/README
+END
+cli.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/2978/callweaver/branches/rel/1.2/apps/nconference/cli.h
+END
+conference.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/conference.h
+END
+vad.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/2978/callweaver/branches/rel/1.2/apps/nconference/vad.h
+END
+sounds.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/sounds.h
+END
+app_nconference.c
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/5349/callweaver/branches/rel/1.2/apps/nconference/app_nconference.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/Makefile.am
+END
+frame.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/5231/callweaver/branches/rel/1.2/apps/nconference/frame.c
+END
+dtmf.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/dtmf.c
+END
+app_nconference.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/app_nconference.h
+END
+jitterbuffer.c
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/3615/callweaver/branches/rel/1.2/apps/nconference/jitterbuffer.c
+END
+common.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/4723/callweaver/branches/rel/1.2/apps/nconference/common.h
+END
