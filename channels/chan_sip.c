@@ -2255,18 +2255,13 @@ static int tcptls_connect(struct sip_pvt *p)
 }
 #endif
 
-enum send_type { 
-	SEND_TYPE_RESPONSE = 0,
-	SEND_TYPE_REQUEST
-};
-
-/*! \brief  send_response_request: Transmit response on SIP request or Send SIP Request to the other part of the dialogue---*/
-static int send_response_request(enum send_type type, struct sip_pvt *p, struct sip_request *req, int reliable, int seqno)
+/*! \brief  send_response: Transmit response on SIP request*/
+static int send_response(struct sip_pvt *p, struct sip_request *req, int reliable, int seqno)
 {
-	int res;
-	char iabuf[INET_ADDRSTRLEN];
-	struct sip_request tmp;
-	char tmpmsg[80];
+    int res = 0;
+    char iabuf[INET_ADDRSTRLEN];
+    struct sip_request tmp;
+    char tmpmsg[80];
 
     if (stun_active  &&  p->stun_needed == 1)
     {
@@ -2326,8 +2321,10 @@ static int send_response_request(enum send_type type, struct sip_pvt *p, struct 
         sip_rebuild_payload(p, req, 0);
     }
 
-	if (sip_debug_test_pvt(p)) {
-		if (cw_test_flag(p, SIP_NAT) & SIP_NAT_ROUTE)
+
+    if (sip_debug_test_pvt(p))
+    {
+        if ( sip_is_nat_needed(p) )
 #ifdef SIP_TCP_SUPPORT
 			cw_verbose("%sTransmitting (NAT) to %s:%d:%s\n with fd %d\n%s\n---\n", reliable ? "Reliably " : "", cw_inet_ntoa(iabuf, sizeof(iabuf), p->recv.sin_addr), ntohs(p->recv.sin_port), p->transport, p->sockfd, req->data);
 #else
@@ -2359,43 +2356,164 @@ static int send_response_request(enum send_type type, struct sip_pvt *p, struct 
 		}
  	}
 
-	if (reliable && !strncasecmp(p->transport, "UDP", 3) /*(p->sockfd == sipsock)*/ ) { /* only UDP needs reliable transmit */ 
+	if (reliable && !strncasecmp(p->transport, "UDP", 3) /*(p->sockfd == sipsock)*/ )
+	{ /* only UDP needs reliable transmit */ 
 #else
-	if (reliable) {
+	if (reliable)
+	{
 #endif
-		if (recordhistory) {
-			parse_copy(&tmp, req);
-			snprintf(tmpmsg, sizeof(tmpmsg), "%s / %s", tmp.data, get_header(&tmp, "CSeq"));
-			append_history(p, type == SEND_TYPE_RESPONSE ? "TxRespRel" : "TxReqRel", tmpmsg);
-		}
-		res = __sip_reliable_xmit(p, seqno, type == SEND_TYPE_RESPONSE ? 1 : 0, req->data, req->len, (reliable > 1), req->method);
-	} else {
-		if (recordhistory) {
-			parse_copy(&tmp, req);
-			snprintf(tmpmsg, sizeof(tmpmsg), "%s / %s", tmp.data, get_header(&tmp, "CSeq"));
-			append_history(p, type == SEND_TYPE_RESPONSE ? "TxResp" : "TxReq", tmpmsg);
-		}
-		res = __sip_xmit(p, req->data, req->len);
-	}
-   
-   p->stun_needed = 0;
-   sip_dealloc_headsdp_lines(req);
-
-	if ( type == SEND_TYPE_RESPONSE && res > 0)
-		return 0;
-	return res;
+        if (recordhistory)
+        {
+            parse_copy(&tmp, req);
+            snprintf(tmpmsg, sizeof(tmpmsg), "%s / %s", tmp.data, get_header(&tmp, "CSeq"));
+            append_history(p, "TxRespRel", tmpmsg);
+        }
+        res = __sip_reliable_xmit(p, seqno, 1, req->data, req->len, (reliable > 1), req->method);
+    }
+    else
+    {
+        if (recordhistory)
+        {
+            parse_copy(&tmp, req);
+            snprintf(tmpmsg, sizeof(tmpmsg), "%s / %s", tmp.data, get_header(&tmp, "CSeq"));
+            append_history(p, "TxResp", tmpmsg);
+        }
+        res = __sip_xmit(p, req->data, req->len);
+    }
+    p->stun_needed = 0;
+    sip_dealloc_headsdp_lines(req);
+    if (res > 0)
+	return 0;	
+    return res;
 }
 
-/*! \brief  send_response: Transmit response on SIP request---*/
-static int send_response(struct sip_pvt *p, struct sip_request *req, int reliable, int seqno)
-{
-	return send_response_request( SEND_TYPE_RESPONSE, p, req, reliable, seqno );
-}
-
-/*! \brief  send_request: Send SIP Request to the other part of the dialogue ---*/
+/*! \brief  send_request: Send SIP Request to the other part of the dialogue */
 static int send_request(struct sip_pvt *p, struct sip_request *req, int reliable, int seqno)
 {
-	return send_response_request( SEND_TYPE_REQUEST, p, req, reliable, seqno );
+    int res=0;
+    char iabuf[INET_ADDRSTRLEN];
+    struct sip_request tmp;
+    char tmpmsg[80];
+
+    if (stun_active  &&  p->stun_needed == 1)
+    {
+        cw_log(LOG_DEBUG,"This call request %s seqno %d really needs STUN - sched %d\n",p->callid,seqno,p->stun_resreq_id);
+
+        struct sip_reqresp *rr;
+        
+        rr = malloc(sizeof(struct sip_reqresp));
+        memset(rr, 0, sizeof(struct sip_reqresp));
+        rr->type = 2;
+        rr->reliable = reliable;
+        rr->seqno = seqno;
+        memcpy(&rr->req, req, sizeof(struct sip_request));
+        memcpy(&rr->callid, p->callid, sizeof(p->callid));
+        rr->p = p;
+        rr->p->stun_retrans_no = 0;
+        rr->streq = cw_udp_stun_bindrequest(sipsock,&stunserver_ip,NULL,NULL);
+	if (rr->streq) 
+    	    memcpy(&rr->p->stun_transid,&rr->streq->req_head.id,sizeof(stun_trans_id) );
+
+        if (p->rtp  &&  cw_rtp_get_stunstate(p->rtp) == 0)
+        {
+            cw_log(LOG_DEBUG, "Setting NAT on RTP to %d\n", sip_is_nat_needed(p) );
+            cw_rtp_setnat(p->rtp, sip_is_nat_needed(p) );
+        }
+        if (p->vrtp  &&  cw_rtp_get_stunstate(p->vrtp) == 0)
+        {
+            cw_log(LOG_DEBUG, "Setting NAT on VRTP to %d\n", sip_is_nat_needed(p) );
+            cw_rtp_setnat(p->vrtp, sip_is_nat_needed(p) );
+        }
+        if (p->udptl  &&  cw_udptl_get_stunstate(p->udptl) == 0)
+        {
+            cw_log(LOG_DEBUG, "Setting NAT on UDPTL to %d\n", sip_is_nat_needed(p) );
+            cw_udptl_setnat(p->udptl, sip_is_nat_needed(p) );
+        }
+        if (rr->streq)
+        {
+            if (stundebug)
+                cw_log(LOG_DEBUG,"** Sent STUN packet for request %d\n",rr->streq->req_head.id.id[0]);
+                        rr->p->stun_resreq_id=cw_sched_add(sched, STUN_WAIT_RETRY_TIME, sip_resend_reqresp, rr);     
+            return 0;   
+        }
+        else
+        {
+            cw_log(LOG_WARNING, "STUN: couldn't send packet. Trying to revert to old externip mode.\n");
+        }
+    }
+    else if (p->stun_needed == 2)
+    {
+        if (stundebug)
+        cw_log(LOG_DEBUG,"This transmit request has already a stun %d\n",p->stun_needed);
+        sip_rebuild_payload(p,req,1);
+    }
+    else
+    {
+        if (stundebug) cw_log(LOG_DEBUG,"This transmit request has stun at %d\n",p->stun_needed);
+        sip_rebuild_payload(p,req,0);
+    }
+
+    if (sip_debug_test_pvt(p))
+    {
+        if ( sip_is_nat_needed(p) )
+#ifdef SIP_TCP_SUPPORT
+			cw_verbose("%sTransmitting (NAT) to %s:%d:%s\n with fd %d\n%s\n---\n", reliable ? "Reliably " : "", cw_inet_ntoa(iabuf, sizeof(iabuf), p->recv.sin_addr), ntohs(p->recv.sin_port), p->transport, p->sockfd, req->data);
+#else
+			cw_verbose("%sTransmitting (NAT) to %s:%d:\n%s\n---\n", reliable ? "Reliably " : "", cw_inet_ntoa(iabuf, sizeof(iabuf), p->recv.sin_addr), ntohs(p->recv.sin_port), req->data);
+#endif
+		else
+#ifdef SIP_TCP_SUPPORT
+			cw_verbose("%sTransmitting (no NAT) to %s:%d:%s\n with fd %d\n%s\n---\n", reliable ? "Reliably " : "", cw_inet_ntoa(iabuf, sizeof(iabuf), p->sa.sin_addr), ntohs(p->sa.sin_port), p->transport, p->sockfd, req->data);
+#else
+			cw_verbose("%sTransmitting (no NAT) to %s:%d:\n%s\n---\n", reliable ? "Reliably " : "", cw_inet_ntoa(iabuf, sizeof(iabuf), p->sa.sin_addr), ntohs(p->sa.sin_port), req->data);
+#endif
+	}
+
+#ifdef SIP_TCP_SUPPORT
+	/* if transport is TCP and not opened connection, connect now */
+	if (!strncasecmp(p->transport, "TCP", 3) || !strncasecmp(p->transport, "TLS", 3) ) {
+		/* make TCP connection only when not connected and no NAT/firewall */
+		if ((p->sockfd < 0) && !(cw_test_flag(p, SIP_NAT) & SIP_NAT_ROUTE)) {
+			p->sockfd = tcptls_connect(p);
+			if (p->sockfd < 0) {
+				cw_log(LOG_WARNING, "Failed to make TCP connection to %s:%d\n", cw_inet_ntoa(iabuf, sizeof(iabuf), p->sa.sin_addr), ntohs(p->sa.sin_port));
+				return -1;
+			}
+			cw_io_add(io, p->sockfd, sipsock_read, CW_IO_IN, p->ssl);
+		} else if (p->sockfd < 0) {
+			if (sip_debug_test_pvt(p))
+				cw_log(LOG_WARNING, "peer is NATed, but TCP socket is closed\n");
+			return -1;
+		}
+ 	}
+
+	if (reliable && !p->peerpoke && !strncasecmp(p->transport, "UDP", 3) /*(p->sockfd == sipsock)*/ )
+	{ /* only UDP needs reliable transmit */ 
+#else
+	if (reliable && !p->peerpoke)
+	{
+#endif
+        if (recordhistory)
+        {
+            parse_copy(&tmp, req);
+            snprintf(tmpmsg, sizeof(tmpmsg), "%s / %s", tmp.data, get_header(&tmp, "CSeq"));
+            append_history(p, "TxReqRel", tmpmsg);
+        }
+        res = __sip_reliable_xmit(p, seqno, 0, req->data, req->len, (reliable > 1), req->method);
+    }
+    else
+    {
+        if (recordhistory)
+        {
+            parse_copy(&tmp, req);
+            snprintf(tmpmsg, sizeof(tmpmsg), "%s / %s", tmp.data, get_header(&tmp, "CSeq"));
+            append_history(p, "TxReq", tmpmsg);
+        }
+        res = __sip_xmit(p, req->data, req->len);
+    }
+    p->stun_needed=0;
+    sip_dealloc_headsdp_lines(req);
+    return res;
 }
 
 
@@ -6275,6 +6393,10 @@ static void set_destination(struct sip_pvt *p, char *uri)
 		cw_log(LOG_WARNING, "Unsupported transport '%s' should be 'UDP', 'TCP', or 'TLS'\n", transport);
 		return;
 	}
+#else
+   p->sa.sin_family = AF_INET;
+   memcpy(&p->sa.sin_addr, hp->h_addr, sizeof(p->sa.sin_addr));
+   p->sa.sin_port = htons(port);
 #endif /* SIP_TCP_SUPPORT */
 
     if (debug)
@@ -16726,7 +16848,12 @@ static struct sip_peer *build_peer(const char *name, struct cw_variable *v, int 
     peer->prefs = prefs;
     oldha = peer->ha;
     peer->ha = NULL;
+#ifdef SIP_TCP_SUPPORT
 /*	peer->addr.sin_family = AF_INET; */
+#else
+    peer->addr.sin_family = AF_INET;
+#endif
+
 #ifdef SIP_TCP_SUPPORT
 	if(!peer->sockfd)
 		peer->sockfd = -1;
